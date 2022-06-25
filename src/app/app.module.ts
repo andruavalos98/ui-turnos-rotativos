@@ -1,16 +1,24 @@
-import { NgModule } from '@angular/core';
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmpleadoModule } from './empleado/empleado.module';
+import { JornadaModule } from './jornada/jornada.module';
+import { NgModule } from '@angular/core';
+import { SharedModule } from './shared/shared.module';
 
+// Components
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    EmpleadoModule,
+    JornadaModule,
+    SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
