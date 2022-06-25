@@ -1,9 +1,12 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+
+// Components
+import { ListaEmpleadosComponent } from './empleado/pages/lista-empleados/lista-empleados.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: 'empleados', component: ListaEmpleadosComponent },
   // ruta por defecto
   { path: '**', redirectTo: '' },
 ];
