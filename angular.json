@@ -63,13 +63,17 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ui-turnos-rotativos:build",
+            "proxyConfig": "./proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "ui-turnos-rotativos:build:production"
             },
             "development": {
               "browserTarget": "ui-turnos-rotativos:build:development"
-            }
+          }
           },
           "defaultConfiguration": "development"
         },
