@@ -12,9 +12,10 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, LandingComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
