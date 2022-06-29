@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JornadaModule } from './jornada/jornada.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from './shared/shared.module';
+import { TipoJornadaModule } from './tipo-jornada/tipo-jornada.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -24,7 +24,7 @@ import { LandingComponent } from './components/landing/landing.component';
     HttpClientModule,
     JornadaModule,
     RouterModule,
-    SharedModule,
+    TipoJornadaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

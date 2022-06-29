@@ -1,1 +1,39 @@
-<p>lista-jornadas works!</p>
+<div class="container">
+  <div class="row justify-content-around">
+    <!-- Create form -->
+    <div class="col-4">
+      <form class="pt-3 col-3 w-100">
+        <div class="mb-3">
+          <label for="txt" class="form-label">Nombre de la nueva jornada</label>
+          <input type="text" class="form-control" id="txt" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+    </div>
+
+    <!-- Data Table -->
+    <section class="col-7 mt-3">
+      <table class="table w-100">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo de jornada</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Entrada</th>
+            <th scope="col">Salida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let jornada of jornadas$ | async">
+            <td>{{ jornada.empleado.nombre }}</td>
+            <td>{{ jornada.tipoDeJornadaLaboral.nombre }}</td>
+            <td>{{ jornada.fecha }}</td>
+            <td>{{ jornada.horaEntrada }}</td>
+            <td>{{ jornada.horaSalida }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

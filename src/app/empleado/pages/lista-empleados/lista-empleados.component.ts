@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import { Observable, of } from 'rxjs';
 import { EmpleadoService } from './../../services/empleado.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista-empleados',
@@ -8,11 +8,14 @@ import { EmpleadoService } from './../../services/empleado.service';
   styleUrls: ['./lista-empleados.component.css'],
 })
 export class ListaEmpleadosComponent implements OnInit {
-  // empleados$: Observable<any> = of();
+  // Observable que contiene el array de empleados
+  empleados$: Observable<any>;
 
+  // Inyecto el servicio
   constructor(private empleadoService: EmpleadoService) {}
 
   ngOnInit(): void {
-    // this.empleados$ = this.empleadoService.getAll();
+    // Hago la petición para traer los datos del servidor
+    this.empleados$ = this.empleadoService.getAll();
   }
 }

@@ -1,1 +1,38 @@
-<p>lista-tipo-jornada works!</p>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-4">
+      <!-- Create form -->
+      <form class="pt-3 col-3 w-100">
+        <div class="mb-3">
+          <label for="txt" class="form-label">Nombre de la nueva jornada</label>
+          <input
+            type="text"
+            class="form-control"
+            id="txt"
+            aria-describedby="emailHelp"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+    </div>
+
+    <!-- Data Table -->
+    <section class="col-4 mt-3">
+      <table class="table w-100">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tipo of tipoJornadas$ | async">
+            <th scope="row">{{ tipo.id }}</th>
+            <td>{{ tipo.nombre }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

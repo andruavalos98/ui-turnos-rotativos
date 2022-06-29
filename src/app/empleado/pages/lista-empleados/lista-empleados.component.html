@@ -1,4 +1,49 @@
-<p>lista-empleados works!</p>
 <!-- <p *ngFor="let empleado of empleados$ | async">
   {{ empleado.empleado.nombre }}
 </p> -->
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-4">
+      <!-- Create form -->
+      <form class="pt-3 col-3 w-100">
+        <div class="mb-3">
+          <label for="txt" class="form-label">Nombre del nuevo empleado</label>
+          <input
+            type="text"
+            class="form-control"
+            id="txt"
+            aria-describedby="emailHelp"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+    </div>
+    <!-- Data Table -->
+    <section class="col-4 mt-3 w-50">
+      <table class="table w-100">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Horas trabajadas para cada tipo de jornada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleado of empleados$ | async">
+            <th scope="row">{{ empleado.empleado.id }}</th>
+            <td>{{ empleado.empleado.nombre }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let horas of empleado.horasPorCadaTipoJornada">
+                  <b>{{ horas.tipoDeJornada }}:</b>
+                  {{ horas.horas }} hs
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

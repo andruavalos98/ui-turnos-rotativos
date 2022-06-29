@@ -8,7 +8,7 @@ import { TipoJornada } from './../models/tipo-jornada';
   providedIn: 'root',
 })
 export class TipoJornadaService {
-  endPoint: string = environment.apiUrl + '/jornada/tipo';
+  endPoint: string = environment.apiUrl + '/tipo-de-jornada-laboral';
 
   constructor(private http: HttpClient) {}
 
