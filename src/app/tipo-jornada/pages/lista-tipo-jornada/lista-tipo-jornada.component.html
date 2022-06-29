@@ -2,15 +2,22 @@
   <div class="row justify-content-around">
     <div class="col-4">
       <!-- Create form -->
-      <form class="pt-3 col-3 w-100">
+      <form
+        class="pt-3 col-3 w-100"
+        [formGroup]="editorTipoJornadaForm"
+        (ngSubmit)="onSubmit()"
+      >
         <div class="mb-3">
           <label for="txt" class="form-label">Nombre de la nueva jornada</label>
           <input
             type="text"
             class="form-control"
+            formControlName="nombre"
+            [ngClass]="displayCssFor('nombre')"
             id="txt"
             aria-describedby="emailHelp"
           />
+          <span class="invalid-feedback"> Debe ingresar un nombre. </span>
         </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
