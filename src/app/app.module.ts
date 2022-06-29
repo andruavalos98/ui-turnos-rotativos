@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingComponent } from './components/landing/landing.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, LandingComponent],
@@ -25,6 +26,7 @@ import { LandingComponent } from './components/landing/landing.component';
     JornadaModule,
     RouterModule,
     TipoJornadaModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

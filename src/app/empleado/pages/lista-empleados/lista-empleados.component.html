@@ -5,15 +5,24 @@
   <div class="row justify-content-around">
     <div class="col-4">
       <!-- Create form -->
-      <form class="pt-3 col-3 w-100">
+      <form
+        class="pt-3 col-3 w-100"
+        [formGroup]="editorEmpleadoForm"
+        (ngSubmit)="onSubmit()"
+      >
         <div class="mb-3">
           <label for="txt" class="form-label">Nombre del nuevo empleado</label>
           <input
             type="text"
             class="form-control"
+            [ngClass]="displayCssFor('nombre')"
             id="txt"
-            aria-describedby="emailHelp"
+            formControlName="nombre"
+            required
           />
+          <span class="invalid-feedback">
+            Debe ingresar un nombre.
+          </span>
         </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
