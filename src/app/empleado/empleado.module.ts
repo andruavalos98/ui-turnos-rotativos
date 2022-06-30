@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ListaEmpleadosComponent } from './pages/lista-empleados/lista-empleados.component';
 import { EditorEmpleadoComponent } from './pages/editor-empleado/editor-empleado.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
   declarations: [ListaEmpleadosComponent, EditorEmpleadoComponent],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [SharedModule],
 })
+
 export class EmpleadoModule {}
