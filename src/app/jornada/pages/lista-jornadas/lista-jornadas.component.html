@@ -2,10 +2,78 @@
   <div class="row justify-content-around">
     <!-- Create form -->
     <div class="col-4">
-      <form class="pt-3 col-3 w-100">
+      <h1 class="pt-3 col-3 w-100 text-center">Nueva Jornada</h1>
+      <form
+        class="pt-1 col-3 w-100"
+        [formGroup]="editorJornadaForm"
+        (submit)="onSubmit()"
+      >
+        <mat-form-field appearance="fill">
+          <mat-label>Empleado</mat-label>
+          <mat-select
+            formControlName="empleado"
+            (selectionChange)="onSelectionChange($event, 'empleado')"
+          >
+            <mat-option>Clear</mat-option>
+            <mat-option
+              *ngFor="let empleado of empleados$ | async"
+              [value]="empleado"
+            >
+              {{ empleado.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Seleccione un empleado de la lista.</mat-hint>
+          <mat-error
+            *ngIf="editorJornadaForm.get('tipoJornada')?.hasError('required')"
+          >
+            El empleado es requerido
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo de Jornada</mat-label>
+          <mat-select
+            formControlName="tipoJornada"
+            (selectionChange)="onSelectionChange($event, 'tipoJornada')"
+          >
+            <mat-option>Clear</mat-option>
+            <mat-option
+              *ngFor="let tipo of tipoJornadas$ | async"
+              [value]="tipo"
+            >
+              {{ tipo.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Seleccione un tipo de la lista.</mat-hint>
+          <mat-error
+            *ngIf="editorJornadaForm.get('tipoJornada')?.hasError('required')"
+          >
+            El tipo de jornada es requerido
+          </mat-error>
+        </mat-form-field>
+        <label for="">Fecha de la jornada</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="fecha"
+            (dateChange)="onSelectionChange($event, 'fecha')"
+          />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
         <div class="mb-3">
-          <label for="txt" class="form-label">Nombre de la nueva jornada</label>
-          <input type="text" class="form-control" id="txt" />
+          <label for="txt" class="form-label">Hora de ingreso</label>
+          <input type="time" formControlName="horaEntrada" />
+        </div>
+        <div class="mb-3">
+          <label for="txt" class="form-label">Hora de salida</label>
+          <input type="time" formControlName="horaSalida" />
         </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
