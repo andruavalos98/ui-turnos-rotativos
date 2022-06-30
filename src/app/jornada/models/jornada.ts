@@ -5,7 +5,7 @@ export interface Jornada {
   id?: number;
   empleado: Empleado;
   tipoDeJornadaLaboral: TipoJornada;
-  fecha: Date;
-  horaEntrada: Date;
-  horaSalida: Date;
+  fecha: Date | string;
+  horaEntrada: Date | string;
+  horaSalida: Date | string;
 }
