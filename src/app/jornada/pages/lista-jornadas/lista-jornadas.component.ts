@@ -8,6 +8,7 @@ import { EmpleadoService } from './../../../empleado/services/empleado.service';
 import { Empleado } from './../../../empleado/models/empleado';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateFormatter } from './../../../shared/providers/date-formatter';
+import { AppComponent } from './../../../app.component';
 
 @Component({
   selector: 'app-lista-jornadas',
@@ -51,8 +52,6 @@ export class ListaJornadasComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.editorJornadaForm.controls);
-
     const { empleado, tipoJornada, fecha, horaEntrada, horaSalida } =
       this.editorJornadaForm.controls;
 
@@ -69,8 +68,13 @@ export class ListaJornadasComponent implements OnInit {
       .subscribe((response) => console.log(response));
   }
 
-  onDateChange(nuevaFecha: any) {
-    console.log(nuevaFecha);
-    console.log(this.editorJornadaForm.controls['fecha']?.value);
+  onEditarClick(Jornada: Jornada): void {
+    const int = {};
+  }
+
+  onEliminarClick(id: number = 0): void {
+    this.jornadaService
+      .delete(id)
+      .subscribe((response) => (this.jornadas$ = this.jornadaService.getAll()));
   }
 }

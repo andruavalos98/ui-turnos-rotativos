@@ -50,7 +50,6 @@
             El tipo de jornada es requerido
           </mat-error>
         </mat-form-field>
-        <label for="">Fecha de la jornada</label>
         <mat-form-field appearance="fill">
           <mat-label>Choose a date</mat-label>
           <input
@@ -76,7 +75,7 @@
           <input type="time" formControlName="horaSalida" />
         </div>
 
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button type="submit" class="btn btn-success">Crear</button>
       </form>
     </div>
 
@@ -90,6 +89,7 @@
             <th scope="col">Fecha</th>
             <th scope="col">Entrada</th>
             <th scope="col">Salida</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -99,9 +99,27 @@
             <td>{{ jornada.fecha }}</td>
             <td>{{ jornada.horaEntrada }}</td>
             <td>{{ jornada.horaSalida }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onEliminarClick(jornada.id)"
+              >
+                Eliminar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="onEditarClick(jornada)"
+              >
+                Editar
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
     </section>
   </div>
 </div>
+
+<app-editor-hora-modal></app-editor-hora-modal>
