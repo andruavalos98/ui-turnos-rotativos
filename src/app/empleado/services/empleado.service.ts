@@ -16,6 +16,10 @@ export class EmpleadoService {
     );
   }
 
+  getAllEntity(): Observable<any> {
+    return this.http.get(environment.apiUrl + '/empleado/all');
+  }
+
   create(empleado: Empleado): Observable<any> {
     return this.http.post(environment.apiUrl + '/empleado/crear', empleado);
   }
