@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { ListaJornadasComponent } from './pages/lista-jornadas/lista-jornadas.component';
 import { EditorJornadaComponent } from './pages/editor-jornada/editor-jornada.component';
 import { DetalleJornadaComponent } from './pages/detalle-jornada/detalle-jornada.component';
+import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -21,6 +22,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     DeleteModalComponent,
   ],
   imports: [
+    MatCardModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,

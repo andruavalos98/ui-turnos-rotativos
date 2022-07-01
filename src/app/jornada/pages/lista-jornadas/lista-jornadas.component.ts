@@ -8,10 +8,11 @@ import { EmpleadoService } from './../../../empleado/services/empleado.service';
 import { Empleado } from './../../../empleado/models/empleado';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateFormatter } from './../../../shared/providers/date-formatter';
-import { AppComponent } from './../../../app.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EditorHoraModalComponent } from '../../components/editor-hora-modal/editor-hora-modal.component';
 import { TimeFormatter } from './../../../shared/providers/time-formatter';
+import { DeleteModalComponent } from './../../components/delete-modal/delete-modal.component';
+import { MessageModalComponent } from 'src/app/shared/components/message-modal/message-modal.component';
 
 @Component({
   selector: 'app-lista-jornadas',
@@ -52,7 +53,6 @@ export class ListaJornadasComponent implements OnInit {
   onSelectionChange(selection: any, control: string): void {
     // Asigno el valor seleccionado a su correspondiente form control
     this.editorJornadaForm.controls[control]?.setValue(selection.value);
-    console.log(this.editorJornadaForm.controls['fecha']?.value);
   }
 
   onSubmit() {
@@ -67,9 +67,28 @@ export class ListaJornadasComponent implements OnInit {
       horaSalida: TimeFormatter.formatTime(horaSalida.value),
     };
 
-    this.jornadaService
-      .create(nuevaJornada)
-      .subscribe((response) => console.log(response));
+    this.jornadaService.create(nuevaJornada).subscribe({
+      next: () => {
+        this.dialog.open(MessageModalComponent, {
+          width: '250px',
+          data: {
+            title: 'Exito!',
+            body: 'La operación fue exitosa!',
+          },
+        });
+
+        this.jornadas$ = this.jornadaService.getAll();
+      },
+      error: (error) => {
+        this.dialog.open(MessageModalComponent, {
+          width: '250px',
+          data: {
+            title: 'Algo salió mal',
+            body: error.error.error,
+          },
+        });
+      },
+    });
   }
 
   onEditarClick(jornada: Jornada): void {
@@ -88,8 +107,18 @@ export class ListaJornadasComponent implements OnInit {
   }
 
   onEliminarClick(id: number = 0): void {
-    this.jornadaService
-      .delete(id)
-      .subscribe((response) => (this.jornadas$ = this.jornadaService.getAll()));
+    // Abro el modal para modificar el horario de la jornada y le paso la jornada tocada
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '250px',
+    });
+
+    // Si se hizo una modificación a la jornada, recargo la lista
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.jornadaService
+          .delete(id)
+          .subscribe(() => (this.jornadas$ = this.jornadaService.getAll()));
+      }
+    });
   }
 }

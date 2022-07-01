@@ -43,8 +43,7 @@ export class ListaEmpleadosComponent implements OnInit {
       // Si tiene exito, actualizo la lista de empleados
       next: () => {
         this.empleados$ = this.empleadoService.getAll();
-      },
-      error: (error) => console.error(error),
+      }
     });
   }
 

@@ -7,7 +7,9 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./delete-modal.component.css'],
 })
 export class DeleteModalComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<DeleteModalComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<DeleteModalComponent>,
+  ) {}
 
   ngOnInit(): void {}
 

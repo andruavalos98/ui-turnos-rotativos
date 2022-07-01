@@ -44,7 +44,6 @@ export class ListaTipoJornadaComponent implements OnInit {
       next: () => {
         this.tipoJornadas$ = this.tipoJornadaService.getAll();
       },
-      error: (error) => console.error(error),
     });
   }
 
