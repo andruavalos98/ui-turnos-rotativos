@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ListaJornadasComponent } from './pages/lista-jornadas/lista-jornadas.component';
 import { EditorJornadaComponent } from './pages/editor-jornada/editor-jornada.component';
 import { DetalleJornadaComponent } from './pages/detalle-jornada/detalle-jornada.component';
@@ -11,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from './../shared/shared.module';
 import { EditorHoraModalComponent } from './components/editor-hora-modal/editor-hora-modal.component';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { EditorHoraModalComponent } from './components/editor-hora-modal/editor-
     EditorJornadaComponent,
     DetalleJornadaComponent,
     EditorHoraModalComponent,
+    DeleteModalComponent,
   ],
   imports: [
     MatDatepickerModule,
