@@ -9,6 +9,9 @@ import { Empleado } from './../../../empleado/models/empleado';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateFormatter } from './../../../shared/providers/date-formatter';
 import { AppComponent } from './../../../app.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditorHoraModalComponent } from '../../components/editor-hora-modal/editor-hora-modal.component';
+import { TimeFormatter } from './../../../shared/providers/time-formatter';
 
 @Component({
   selector: 'app-lista-jornadas',
@@ -26,7 +29,8 @@ export class ListaJornadasComponent implements OnInit {
     private jornadaService: JornadaService,
     private tipoJornadaService: TipoJornadaService,
     private empleadoService: EmpleadoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -59,8 +63,8 @@ export class ListaJornadasComponent implements OnInit {
       empleado: empleado.value,
       tipoDeJornadaLaboral: tipoJornada.value,
       fecha: DateFormatter.formatDate(fecha.value),
-      horaEntrada: horaEntrada.value + ':00',
-      horaSalida: horaSalida.value + ':00',
+      horaEntrada: TimeFormatter.formatTime(horaEntrada.value),
+      horaSalida: TimeFormatter.formatTime(horaSalida.value),
     };
 
     this.jornadaService
@@ -68,8 +72,19 @@ export class ListaJornadasComponent implements OnInit {
       .subscribe((response) => console.log(response));
   }
 
-  onEditarClick(Jornada: Jornada): void {
-    const int = {};
+  onEditarClick(jornada: Jornada): void {
+    // Abro el modal para modificar el horario de la jornada y le paso la jornada tocada
+    const dialogRef = this.dialog.open(EditorHoraModalComponent, {
+      width: '250px',
+      data: jornada,
+    });
+
+    // Si se hizo una modificación a la jornada, recargo la lista
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.jornadas$ = this.jornadaService.getAll();
+      }
+    });
   }
 
   onEliminarClick(id: number = 0): void {

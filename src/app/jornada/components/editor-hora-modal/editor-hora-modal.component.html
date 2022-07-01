@@ -1,11 +1,32 @@
-<ol>
-  <li>
+<form [formGroup]="modificarJornadaForm" (submit)="onSubmit()">
+  <h1>Modificar horario de la jornada</h1>
+  <mat-error *ngIf="!isFormValid()">
+    Ambos horarios son requeridos y la hora de entrada debe ser menor a la de
+    salida.
+  </mat-error>
+  <mat-form-field appearance="fill">
     <label for="">Hora de entrada</label>
-    <input type="time" name="" id="" />
-  </li>
-  <li>
+    <input
+      matInput
+      type="time"
+      formControlName="horaEntrada"
+      [(ngModel)]="jornada.horaEntrada"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
     <label for="">Hora de salida</label>
     <br />
-    <input type="time" name="" id="" />
-  </li>
-</ol>
+    <input
+      matInput
+      type="time"
+      formControlName="horaSalida"
+      [(ngModel)]="jornada.horaSalida"
+    />
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button class="btn btn-danger" mat-button (click)="onNoClick()">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" mat-button cdkFocusInitial>Cambiar</button>
+  </div>
+</form>
